@@ -40,7 +40,7 @@ public class Robot extends TimedRobot
     public Joystick myJoystick = new Joystick(0);
 
     public JoystickButton button1 = new JoystickButton(myJoystick,1);
-    public JoystickButton button2 = new JoystickButton(myJoystick,3);
+    public JoystickButton button2 = new JoystickButton(myJoystick,2);
 
     public PWMVictorSPX lastMotor  = new PWMVictorSPX(0);
 
@@ -111,9 +111,6 @@ public class Robot extends TimedRobot
     public void teleopPeriodic()
     {
         myDrive.tankDrive(myJoystick.getRawAxis(1), myJoystick.getRawAxis(3));
-
-        leftMC.set(myJoystick.getRawAxis(1));
-        rightMC.set(myJoystick.getRawAxis(3));
 
         if(button1.get()){
             solenoid1.set(true);
