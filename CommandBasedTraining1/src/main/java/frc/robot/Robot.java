@@ -84,8 +84,7 @@ public class Robot extends TimedRobot{
 
     @Override
     public void teleopPeriodic(){
-        DriveSubsystem.Drive(1,3);
-        //TODO: BURASI KESINLIKLE YANLIŞ, SAYILARI NASIL DÜZELTECEĞINI ÖĞREN
+        DriveSubsystem.Drive(robotContainer.Stick.getRawAxis(1), robotContainer.Stick.getRawAxis(3));
     }
 
     @Override
