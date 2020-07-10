@@ -39,9 +39,8 @@ public class RobotContainer
 
 
     private void configureButtonBindings(){
-        motorButton.whenActive(motorCommand);
-        solenoidButton.whenActive(solenoidCommand);
-
+        motorButton.whileActiveContinuous(motorCommand);
+        solenoidButton.whileActiveContinuous(solenoidCommand);
     }
 
 
