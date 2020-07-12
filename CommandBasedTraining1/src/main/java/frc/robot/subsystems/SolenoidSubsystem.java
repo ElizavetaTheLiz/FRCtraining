@@ -9,11 +9,11 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.wpilibj.Solenoid;
-
+import frc.robot.Constants;
 
 
 public class SolenoidSubsystem extends SubsystemBase {
-    private final static Solenoid m_Solenoid = new Solenoid(0);
+    private final static Solenoid m_Solenoid = new Solenoid(Constants.RoboRIO_PCM_Port.port);
 
 
     private static SolenoidSubsystem INSTANCE;

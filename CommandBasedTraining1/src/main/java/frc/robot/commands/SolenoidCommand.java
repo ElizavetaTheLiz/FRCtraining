@@ -14,11 +14,11 @@ public class SolenoidCommand extends CommandBase {
 
     @Override
     public void initialize() {
-        m_solenoid.solenoidCalistirma(true);
     }
 
     @Override
     public void execute() {
+        m_solenoid.solenoidCalistirma(true);
     }
 
 

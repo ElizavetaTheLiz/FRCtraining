@@ -22,9 +22,9 @@ import frc.robot.commands.*;
 public class RobotContainer
 {
 
-        Joystick Stick = new Joystick(1);
-        JoystickButton motorButton = new JoystickButton(Stick, 1);
-        JoystickButton solenoidButton = new JoystickButton(Stick, 2);
+        Joystick Stick = new Joystick(Constants.Joystick.JoystickPort);
+        JoystickButton motorButton = new JoystickButton(Stick, Constants.Joystick.Button1);
+        JoystickButton solenoidButton = new JoystickButton(Stick, Constants.Joystick.Button2);
 
         private final MotorCommand motorCommand = new MotorCommand();
         private final SolenoidCommand solenoidCommand = new SolenoidCommand();
@@ -45,8 +45,7 @@ public class RobotContainer
 
 
 
-    public Command getAutonomousCommand()
-    {
+    public Command getAutonomousCommand(){
         return autonomousCommand;
     }
 }

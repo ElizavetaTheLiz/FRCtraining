@@ -15,7 +15,26 @@ package frc.robot;
  * It is advised to statically import this class (or one of its inner classes) wherever the
  * constants are needed, to reduce verbosity.
  */
-public final class Constants 
-{
-    
+public final class Constants{
+
+    public static final class RoboRIO_PWM_Channels{
+        public static int Motorchannel1 = 0;
+        public static int Motorchannel2 = 1;
+        public static int Motorchannel3 = 2;
+        public static int Motorchannel4 = 3;
+        public static int Motorchannel5 = 4;
+    }
+
+    public static final class RoboRIO_PCM_Port{
+        public static int port = 1;
+    }
+
+
+    public static final class Joystick{
+        public static int JoystickPort = 1;
+        public static int Button1 = 1;
+        public static int Button2 = 2;
+        public static int Axis1 = 1;
+        public static int Axis2 = 3;
+    }
 }
