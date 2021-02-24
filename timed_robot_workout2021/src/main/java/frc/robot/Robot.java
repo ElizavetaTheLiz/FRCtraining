@@ -73,8 +73,9 @@ public class Robot extends TimedRobot {
 
   public Timer timer = new Timer();
 
-  //Gyro gyro = new ADXRS450_Gyro(SPI.Port.kMXP);
+  //public Gyro gyro = new ADXRS450_Gyro(SPI.Port.kMXP);
   public AnalogGyro gyro = new AnalogGyro(0);
+
   public Ultrasonic ultrasonic = new Ultrasonic(13, 14);
 
   public boolean elevetor_open = false;
@@ -107,7 +108,6 @@ public class Robot extends TimedRobot {
     gyro.reset();
 
     Ultrasonic.setAutomaticMode(true);
-    ultrasonic_output_cm = ultrasonic.getRangeInches()*2.54;
   }
 
 
@@ -119,7 +119,10 @@ public class Robot extends TimedRobot {
    * SmartDashboard integrated updating.
    */
   @Override
-  public void robotPeriodic() {}
+  public void robotPeriodic() {
+    
+    ultrasonic_output_cm = ultrasonic.getRangeInches()*2.54;
+  }
 
   /**
    * This autonomous (along with the chooser code above) shows how to select between different
@@ -153,9 +156,10 @@ public class Robot extends TimedRobot {
           }
           else if(auto_level == 2){
             double error = target_angle - gyro.getAngle();
-            double wheel_speed = error/10;
+            double wheel_speed = error/100;
             if(gyro.getAngle() <=90){
               right_motors.set(wheel_speed);
+              left_motors.set(0);
             }
             else{
               auto_level = 3;
@@ -170,8 +174,9 @@ public class Robot extends TimedRobot {
               auto_level = 0;
             }
           }
-
       break;
+
+
       case kDefaultAuto:
           default:
             if(left_encoder.getDistance()<500 && right_encoder.getDistance()<500){
@@ -195,7 +200,7 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopPeriodic() {
 
-    SmartDashboard.putNumber ("Sol Encoder", left_encoder.getDistance());
+    SmartDashboard.putNumber("Sol Encoder", left_encoder.getDistance());
     SmartDashboard.putNumber("Sağ Encoder", right_encoder.getDistance());
     SmartDashboard.putNumber("gyro", gyro.getAngle());
     SmartDashboard.putNumber("ultrasonic", ultrasonic_output_cm);
@@ -239,8 +244,8 @@ public class Robot extends TimedRobot {
           is_elevator_up = true;
           timer.stop();
           timer.reset();
+          elevetor_open = false;
         }
-        elevetor_open = false;
     }
 
 
@@ -254,8 +259,8 @@ public class Robot extends TimedRobot {
           is_elevator_up = false;
           timer.stop();
           timer.reset();
+          elevetor_open = false;
         }
-        elevetor_open = false;
     }
 
 
@@ -284,25 +289,5 @@ public class Robot extends TimedRobot {
 
 
   }
-  
 
-  
-
-  /** This function is called once when the robot is disabled. */
-  @Override
-  public void disabledInit() {}
-
-  /** This function is called periodically when disabled. */
-  @Override
-  public void disabledPeriodic() {}
-
-  /** This function is called once when test mode is enabled. */
-  @Override
-  public void testInit() {}
-
-  /** This function is called periodically during test mode. */
-  @Override
-  public void testPeriodic() {}
 }
-
-
