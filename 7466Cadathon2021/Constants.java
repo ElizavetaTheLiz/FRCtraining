@@ -24,6 +24,8 @@ public final class Constants {
         public static final int hangMotor    = 6;
         public static final int intakeMotor1 = 7;
         public static final int intakeMotor2 = 8;
+        public static final int elevatorMotor1 = 9;
+        public static final int elevatorMotor2 = 10;
     }
 
     public final class RoboRIOAnalogPorts{
@@ -32,12 +34,14 @@ public final class Constants {
         public static final int driveEncoder3  = 2;
         public static final int driveEncoder4  = 3;
         public static final int driveGyro      = 4;
-    
+        public static final int elevator_encoder  = 5;
+        public static final int elevator_encoder2  = 6;
     }
 
     public final class RobotFeatures{
         public static final double wheelRadius = 0;
         public static final int encoderPPR = 0;
+        public static final double elevatorEncoderMovePerTour  = 0;
         
     }
 
