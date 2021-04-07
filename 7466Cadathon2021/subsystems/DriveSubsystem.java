@@ -5,7 +5,7 @@
 
 package frc.robot.subsystems;
 
-import edu.wpi.first.wpilibj.AnalogGyro;
+//import edu.wpi.first.wpilibj.AnalogGyro;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.PWMVictorSPX;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
@@ -31,7 +31,7 @@ public class DriveSubsystem extends SubsystemBase {
     private final Encoder leftEncoder  = new Encoder(Constants.RoboRIOAnalogPorts.driveEncoder1, Constants.RoboRIOAnalogPorts.driveEncoder2);
     private final Encoder rightEncoder = new Encoder(Constants.RoboRIOAnalogPorts.driveEncoder3, Constants.RoboRIOAnalogPorts.driveEncoder4);
 
-    private final AnalogGyro gyro = new AnalogGyro(Constants.RoboRIOAnalogPorts.driveGyro);
+    //private final AnalogGyro gyro = new AnalogGyro(Constants.RoboRIOAnalogPorts.driveGyro);
 
 
     private static DriveSubsystem INSTANCE = new DriveSubsystem();

@@ -42,6 +42,22 @@ public final class Constants {
         public static final double wheelRadius = 0;
         public static final int encoderPPR = 0;
         public static final double elevatorEncoderMovePerTour  = 0;
+
+
+//the lowermost position of Intake in centimeters
+        public static final double minPosElev = 15.;
+        //the height of intake's "take the ball from the floor" position in centimeters
+        public static final double floorPosElev = 16.;
+        //the height of intake's "put the ball into the portal" position in centimeters
+        public static final double portalPosElev = 20.;
+        //the height of intake's "leave the ball into the switch" position in centimeters
+        public static final double switchPosElev = 100.;
+        //the height of intake's "leave the ball into the scale" position in centimeters
+        public static final double scalePosElev = 190.;
+        //the distance between elevators lowermost position and elevators hang position in centimeters
+        public static final double hangPosElev = 213.36;
+        //the height of intake's "go as high as you can go" position in centimeters
+        public static final double maxPosElev = 265.;
         
     }
 

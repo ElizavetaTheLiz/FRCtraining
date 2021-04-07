@@ -10,7 +10,7 @@ import frc.robot.subsystems.ElevatorSubsystem;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
 /** An example command that uses an example subsystem. */
-public class ElevatorToTop extends CommandBase {
+public class ElevatorHang extends CommandBase {
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
 
   private final ElevatorSubsystem elevator = ElevatorSubsystem.getInstance();
@@ -22,7 +22,7 @@ public class ElevatorToTop extends CommandBase {
    *
    * @param subsystem The subsystem used by this command.
    */
-  public ElevatorToTop(ElevatorSubsystem elevator) {
+  public ElevatorHang(ElevatorSubsystem elevator) {
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(elevator);
   }
@@ -36,13 +36,13 @@ public class ElevatorToTop extends CommandBase {
   
   @Override
   public void execute() {
-      if(elevator.getElevatorRaising() < Constants.RobotFeatures.maxPosElev - Constants.RobotFeatures.minPosElev) {
+      if(elevator.getElevatorRaising() < Constants.RobotFeatures.hangPosElev - Constants.RobotFeatures.minPosElev) {
           elevator.elevatorUp(0.7);
       }
-      if(elevator.getElevatorRaising() > Constants.RobotFeatures.maxPosElev - Constants.RobotFeatures.minPosElev) {
+      if(elevator.getElevatorRaising() > Constants.RobotFeatures.hangPosElev - Constants.RobotFeatures.minPosElev) {
           elevator.elevatorDown(-0.7);
       }
-      if(elevator.getElevatorRaising() == Constants.RobotFeatures.maxPosElev - Constants.RobotFeatures.minPosElev) {
+      if(elevator.getElevatorRaising() == Constants.RobotFeatures.hangPosElev - Constants.RobotFeatures.minPosElev) {
           position = true;
       }
   }

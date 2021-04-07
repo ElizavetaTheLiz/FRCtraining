@@ -1,19 +1,17 @@
-
 // Copyright (c) FIRST and other WPILib contributors.
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
 
-package frc.robot.commands.ElevatorCommands;
+package frc.robot.commands.HangCommands;
 
-import frc.robot.Constants;
-import frc.robot.subsystems.ElevatorSubsystem;
+import frc.robot.subsystems.HangSubsystem;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
 /** An example command that uses an example subsystem. */
-public class ElevatorToTop extends CommandBase {
+public class HangUpCommand extends CommandBase {
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
 
-  private final ElevatorSubsystem elevator = ElevatorSubsystem.getInstance();
+  private final HangSubsystem hang = HangSubsystem.getInstance();
 
   private boolean position = false;
 
@@ -22,9 +20,9 @@ public class ElevatorToTop extends CommandBase {
    *
    * @param subsystem The subsystem used by this command.
    */
-  public ElevatorToTop(ElevatorSubsystem elevator) {
+  public HangUpCommand(HangSubsystem hang) {
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(elevator);
+    addRequirements(hang);
   }
 
   // Called when the command is initially scheduled.
@@ -36,20 +34,22 @@ public class ElevatorToTop extends CommandBase {
   
   @Override
   public void execute() {
-      if(elevator.getElevatorRaising() < Constants.RobotFeatures.maxPosElev - Constants.RobotFeatures.minPosElev) {
-          elevator.elevatorUp(0.7);
+      if(hang.encoderGetDegrees() < 180) {
+          hang.motorOpenClose(0.7);
       }
-      if(elevator.getElevatorRaising() > Constants.RobotFeatures.maxPosElev - Constants.RobotFeatures.minPosElev) {
-          elevator.elevatorDown(-0.7);
+      if(hang.encoderGetDegrees() > 180) {
+        hang.motorOpenClose(-0.7);
       }
-      if(elevator.getElevatorRaising() == Constants.RobotFeatures.maxPosElev - Constants.RobotFeatures.minPosElev) {
+      if(hang.encoderGetDegrees() == 180) {
           position = true;
       }
   }
 
   // Called once the command ends or is interrupted.
   @Override
-  public void end(boolean interrupted) {}
+  public void end(boolean interrupted) {
+      hang.motorStop();
+  }
 
   // Returns true when the command should end.
   @Override

@@ -5,6 +5,7 @@
 
 package frc.robot.subsystems;
 
+import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.PWMVictorSPX;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
@@ -12,6 +13,7 @@ import frc.robot.Constants;
 public class HangSubsystem extends SubsystemBase {
 
     private final PWMVictorSPX motor = new PWMVictorSPX(Constants.RoboRIOPWMPorts.hangMotor);
+    private final Encoder encoder    = new Encoder(0, 0);
 
     
     private static HangSubsystem INSTANCE = new HangSubsystem();
@@ -25,6 +27,14 @@ public class HangSubsystem extends SubsystemBase {
           }
       }
       return INSTANCE;
+  }
+
+  public void encoderReset(){
+    encoder.reset();
+  }
+
+  public double encoderGetDegrees(){
+    return encoder.get() *360 /Constants.RobotFeatures.encoderPPR;
   }
 
   public void motorOpenClose(double speed){
