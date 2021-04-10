@@ -65,4 +65,11 @@ public final class Constants {
 
         
     }
+
+    public final class Characterization{
+        
+        public static final double kS = 1.478;
+        public static final double kV = 1.89;
+        public static final double kA = 0.243;
+    }
 }
