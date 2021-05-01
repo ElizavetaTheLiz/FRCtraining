@@ -14,8 +14,11 @@ public class ElevatorSubsystem extends SubsystemBase {
 
     private final PWMVictorSPX motor1 = new PWMVictorSPX(0);
     private final PWMVictorSPX motor2 = new PWMVictorSPX(0);
+    private final PWMVictorSPX motor3 = new PWMVictorSPX(0);
+    private final PWMVictorSPX motor4 = new PWMVictorSPX(0);
 
-    private final SpeedControllerGroup upDownMotors       = new SpeedControllerGroup(motor1, motor2);
+    private final SpeedControllerGroup mainMotors       = new SpeedControllerGroup(motor1, motor2);
+    private final SpeedControllerGroup intakeTurnMotors = new SpeedControllerGroup(motor3, motor4);  
 
     private final Encoder encoder = new Encoder(0, 1);
 
@@ -36,7 +39,7 @@ public class ElevatorSubsystem extends SubsystemBase {
   //ENCODER METHODS
 
       //Encoder Distance Methods
-      public double getElevatorRaising(){
+      public double encoderGetDistance(){
         encoder.setDistancePerPulse(Constants.RobotFeatures.elevatorEncoderMovePerTour/Constants.RobotFeatures.encoderPPR);
         return encoder.getDistance();
 
@@ -55,11 +58,11 @@ public class ElevatorSubsystem extends SubsystemBase {
     public void elevatorUp(double elevator_speed){
         
         if(elevator_speed > 0){
-            upDownMotors.set(elevator_speed);
+            mainMotors.set(elevator_speed);
             
         }
         else{
-            upDownMotors.set(0.0);
+            mainMotors.set(0.0);
         }    
     }
       
@@ -68,18 +71,18 @@ public class ElevatorSubsystem extends SubsystemBase {
     public void elevatorDown(double elevator_speed2){
         
         if(elevator_speed2 < 0){
-            upDownMotors.set(elevator_speed2);
+            mainMotors.set(elevator_speed2);
         }
 
         else{
-            upDownMotors.set(0.0);
+            mainMotors.set(0.0);
         }
     }
     
     
         //Elevator Stop Method
     public void elevatorStop(){
-        upDownMotors.set(0.0);
+        mainMotors.set(0.0);
     }
 
   /** Creates a new ExampleSubsystem. */
