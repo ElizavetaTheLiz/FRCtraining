@@ -4,6 +4,7 @@
 
 package frc.robot.commands.IntakeCommands;
 
+import frc.robot.Constants;
 import frc.robot.subsystems.IntakeSubsystem;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
@@ -35,10 +36,10 @@ public class IntakeTo0Command extends CommandBase {
   @Override
   public void execute() {
       if(intake.encoderGetDegrees() < 0) {
-          intake.intakeTurn(0.7);
+          intake.intakeTurn(Constants.iO.intakeSpeed);
       }
       if(intake.encoderGetDegrees() > 0) {
-        intake.intakeTurnBack(-0.7);
+        intake.intakeTurnBack(-Constants.iO.intakeSpeed);
       }
       if(intake.encoderGetDegrees() == 0) {
           position = true;

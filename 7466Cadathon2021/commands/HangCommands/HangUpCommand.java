@@ -4,6 +4,7 @@
 
 package frc.robot.commands.HangCommands;
 
+import frc.robot.Constants;
 import frc.robot.subsystems.HangSubsystem;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
@@ -35,10 +36,10 @@ public class HangUpCommand extends CommandBase {
   @Override
   public void execute() {
       if(hang.encoderGetDegrees() < 180) {
-          hang.motorOpenClose(0.7);
+          hang.motorOpenClose(Constants.iO.hangSpeed);
       }
       if(hang.encoderGetDegrees() > 180) {
-        hang.motorOpenClose(-0.7);
+        hang.motorOpenClose(-Constants.iO.hangSpeed);
       }
       if(hang.encoderGetDegrees() == 180) {
           position = true;

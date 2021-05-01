@@ -4,6 +4,7 @@
 
 package frc.robot.commands.IntakeCommands;
 
+import frc.robot.Constants;
 import frc.robot.subsystems.IntakeSubsystem;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
@@ -34,13 +35,13 @@ public class IntakeTo180Command extends CommandBase {
   
   @Override
   public void execute() {
-      if(intake.encoderGetDegrees() < 180) {
-          intake.intakeTurn(0.7);
+      if(intake.encoderGetDegrees() < Constants.iO.intakeDegrees) {
+          intake.intakeTurn(Constants.iO.intakeSpeed);
       }
-      if(intake.encoderGetDegrees() > 180) {
-        intake.intakeTurnBack(-0.7);
+      if(intake.encoderGetDegrees() > Constants.iO.intakeDegrees) {
+        intake.intakeTurnBack(-Constants.iO.intakeSpeed);
       }
-      if(intake.encoderGetDegrees() == 180) {
+      if(intake.encoderGetDegrees() == Constants.iO.intakeDegrees) {
           position = true;
       }
   }

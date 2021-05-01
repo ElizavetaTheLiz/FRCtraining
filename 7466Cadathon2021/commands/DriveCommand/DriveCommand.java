@@ -5,8 +5,8 @@
 
 package frc.robot.commands.DriveCommand;
 
+import frc.robot.Constants;
 import frc.robot.subsystems.DriveSubsystem;
-import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
 /** An example command that uses an example subsystem. */
@@ -14,8 +14,6 @@ public class DriveCommand extends CommandBase {
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
 
   private final DriveSubsystem driveSubsystem = DriveSubsystem.getInstance();
-
-  private final Joystick joystick = new Joystick(0);
   /**
    * Creates a new DriveCommand.
    *
@@ -33,7 +31,9 @@ public class DriveCommand extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-      driveSubsystem.drive(joystick.getRawAxis(1), joystick.getRawAxis(3));
+      driveSubsystem.drive(
+        DriveSubsystem.getInstance().getJoystick().getRawAxis(Constants.joystick.rawAxis1), 
+        DriveSubsystem.getInstance().getJoystick().getRawAxis(Constants.joystick.rawAxis2));
   }
 
   // Called once the command ends or is interrupted.

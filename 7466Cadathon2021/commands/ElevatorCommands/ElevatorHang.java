@@ -36,20 +36,22 @@ public class ElevatorHang extends CommandBase {
   
   @Override
   public void execute() {
-      if(elevator.getElevatorRaising() < Constants.RobotFeatures.hangPosElev - Constants.RobotFeatures.minPosElev) {
-          elevator.elevatorUp(0.7);
+      if(elevator.getElevatorRaising() < Constants.robotFeatures.hangPosElev - Constants.robotFeatures.minPosElev) {
+          elevator.elevatorUp(Constants.iO.elevatorSpeed);
       }
-      if(elevator.getElevatorRaising() > Constants.RobotFeatures.hangPosElev - Constants.RobotFeatures.minPosElev) {
-          elevator.elevatorDown(-0.7);
+      if(elevator.getElevatorRaising() > Constants.robotFeatures.hangPosElev - Constants.robotFeatures.minPosElev) {
+          elevator.elevatorDown(-Constants.iO.elevatorSpeed);
       }
-      if(elevator.getElevatorRaising() == Constants.RobotFeatures.hangPosElev - Constants.RobotFeatures.minPosElev) {
+      if(elevator.getElevatorRaising() == Constants.robotFeatures.hangPosElev - Constants.robotFeatures.minPosElev) {
           position = true;
       }
   }
 
   // Called once the command ends or is interrupted.
   @Override
-  public void end(boolean interrupted) {}
+  public void end(boolean interrupted) {
+    elevator.elevatorStop();
+  }
 
   // Returns true when the command should end.
   @Override

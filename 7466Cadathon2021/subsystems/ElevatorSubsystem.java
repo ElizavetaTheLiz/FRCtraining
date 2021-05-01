@@ -12,15 +12,12 @@ import frc.robot.Constants;
 
 public class ElevatorSubsystem extends SubsystemBase {
 
-    private final PWMVictorSPX motor1 = new PWMVictorSPX(0);
-    private final PWMVictorSPX motor2 = new PWMVictorSPX(0);
-    private final PWMVictorSPX motor3 = new PWMVictorSPX(0);
-    private final PWMVictorSPX motor4 = new PWMVictorSPX(0);
+    private final PWMVictorSPX motor1 = new PWMVictorSPX(Constants.roboRIOPWMPorts.elevatorMotor1);
+    private final PWMVictorSPX motor2 = new PWMVictorSPX(Constants.roboRIOPWMPorts.elevatorMotor2);
 
-    private final SpeedControllerGroup mainMotors       = new SpeedControllerGroup(motor1, motor2);
-    private final SpeedControllerGroup intakeTurnMotors = new SpeedControllerGroup(motor3, motor4);  
+    private final SpeedControllerGroup upDownMotors = new SpeedControllerGroup(motor1, motor2);
 
-    private final Encoder encoder = new Encoder(0, 1);
+    private final Encoder encoder = new Encoder(Constants.roboRIODigitalPorts.elevatorEncoder1, Constants.roboRIODigitalPorts.elevatorEncoder2);
 
 
     private static ElevatorSubsystem INSTANCE = new ElevatorSubsystem();
@@ -39,8 +36,8 @@ public class ElevatorSubsystem extends SubsystemBase {
   //ENCODER METHODS
 
       //Encoder Distance Methods
-      public double encoderGetDistance(){
-        encoder.setDistancePerPulse(Constants.RobotFeatures.elevatorEncoderMovePerTour/Constants.RobotFeatures.encoderPPR);
+      public double getElevatorRaising(){
+        encoder.setDistancePerPulse(Constants.robotFeatures.elevatorEncoderMovePerTour/Constants.robotFeatures.encoderPPR);
         return encoder.getDistance();
 
     }
@@ -58,11 +55,11 @@ public class ElevatorSubsystem extends SubsystemBase {
     public void elevatorUp(double elevator_speed){
         
         if(elevator_speed > 0){
-            mainMotors.set(elevator_speed);
+            upDownMotors.set(elevator_speed);
             
         }
         else{
-            mainMotors.set(0.0);
+            upDownMotors.set(0.0);
         }    
     }
       
@@ -71,18 +68,18 @@ public class ElevatorSubsystem extends SubsystemBase {
     public void elevatorDown(double elevator_speed2){
         
         if(elevator_speed2 < 0){
-            mainMotors.set(elevator_speed2);
+            upDownMotors.set(elevator_speed2);
         }
 
         else{
-            mainMotors.set(0.0);
+            upDownMotors.set(0.0);
         }
     }
     
     
         //Elevator Stop Method
     public void elevatorStop(){
-        mainMotors.set(0.0);
+        upDownMotors.set(0.0);
     }
 
   /** Creates a new ExampleSubsystem. */
